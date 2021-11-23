@@ -7,6 +7,7 @@ module.exports ={
         path: path.resolve('public'),
         filename: 'bundle.js'
     },
+    // 'style-loader', 'css-loader', 'sass-loader' 순서 중요
     module: {
         rules: [{
             test: /\.(sa|sc|c)ss$/i,
