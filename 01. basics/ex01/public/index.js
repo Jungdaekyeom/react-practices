@@ -4,4 +4,6 @@ const App = function() {
     return app;
 }
 
-export { App }
+document
+    .getElementById('root')
+    .appendChild(App());

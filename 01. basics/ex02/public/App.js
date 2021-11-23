@@ -4,4 +4,4 @@ const App = function() {
     return app;
 }
 
-export { App }
+// export { App }
