@@ -1,8 +1,9 @@
 const path = require('path');
 
-module.exports ={
+module.exports = function(env){
+    return {
     mode: 'development',
-    entry: path.resolve('src/{env.src}/index.js'), // 실행 위치 변경
+    entry: path.resolve(`src/${env.src}/index.js`), // 실행 위치 변경
     output: {
         path: path.resolve('public'),
         filename: 'bundle.js',
@@ -30,4 +31,5 @@ module.exports ={
         compress: true,
         historyApiFallback: true
     }
+}
 }
