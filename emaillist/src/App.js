@@ -1,10 +1,9 @@
 import React from 'react';
-import Guestbook from './Guestbook';
 
 export default function() {
     return (
         <div id='App'>
-          <KanbanBoard />
+          <h1>Emaillist</h1>
         </div>
     )
 }
