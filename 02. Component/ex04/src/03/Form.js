@@ -1,8 +1,16 @@
 import React from 'react';
 import './assets/Form.css';
 
+// 비제어
 export default function Form() {
+    const onSubmit = (e) => {
+        e.preventDefault();
 
+        // validation이 딱히 필요 없을 때 사용하쟈 ㅎㅎ
+        console.log(e.target.email.value, ':' , e.target.password.value);
+
+        // ajax 로그인
+    }
 
     return (
         <form
