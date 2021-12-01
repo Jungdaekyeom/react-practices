@@ -20,7 +20,8 @@ module.exports ={
             test: /\.(png|gif|jpe?g|svg|ico|tiff?|bmp)$/i,
             type: 'asset/resource'
         }]
-    },
+    },    
+    target: ['web', 'es6'], /* 웹 설정 추가. 바벨만 깔아서는 안됨*/
     devtool: "eval-source-map",
     devServer: {
         host: '0.0.0.0',

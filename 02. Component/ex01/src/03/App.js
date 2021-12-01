@@ -1,10 +1,26 @@
 import React from 'react';
-import './assets/css/App.css';
-
+import FoodList from './FoodList';
+ 
 export default function() {
+    const foods = [{
+        no: 1,
+        name: 'Bread',
+        quantity: 10
+    }, {
+        no: 2,
+        name: 'Milk',
+        quantity: 5
+
+    }, {
+        no: 3,
+        name: 'Egg',
+        quantity: 30
+
+    }];
+
     return (
         <div id='App'>
-            <h1 className={'Header'}>{`Normal CSS (css-loader options: {modules: true})`}</h1>
+            <FoodList foods={ foods }/>
         </div>
     )
 }

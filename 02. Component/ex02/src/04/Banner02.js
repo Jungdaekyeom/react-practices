@@ -1,8 +1,8 @@
-import React from "react";
-import Banner02 from "./Banner02";
+import React from 'react';
+import styles from './assets/css/Banner02.css';
 
-export default function(){
+export default function() {
     return (
-        <h1>Hello React - Banner02 - css파일 주신님께 감사합니다 ㅠㅠ</h1>
+        <h1 className={styles.Header}>Hello CSS Module</h1>
     )
 }
