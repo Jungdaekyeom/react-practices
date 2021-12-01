@@ -1,13 +1,17 @@
 import React from 'react';
-import FoodList from './FoodList';
-
-/*
-푸드 리스트 컴포넌트를 만들려고 한다.
-*/   
+ 
 export default function() {
+    const h1Style = {
+        width: 280,
+        height: 50,
+        padding: 5,
+        color: '#111',
+        backgroundColor: '#eeff99'
+    }
+
     return (
         <div id='App'>
-            <FoodList />
+            <h1 style={ h1Style }>Inline Styling</h1>
         </div>
     )
 }

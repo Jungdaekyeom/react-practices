@@ -5,6 +5,7 @@ $ npm i -D webpack webpack-cli webpack-dev-server babel-loader css-loader style-
 $ npm i react react-dom
 
 설정:
+babel
 babel: babel.config.json
 webpack: webpack.config.js
 
