@@ -5,10 +5,12 @@ export default class App extends Component {
 
     onScroll(e){
         // 함수 안에서 쓸 때는 current를 빼야함
+        // this가 current 의미를 내포하고 있음
         // console.log(this.outterRef.current.scrollTop, ':', this.outterRef.current.clientHeight + ':', this.innerRef.current.clientHeight)
         console.log(this.outterRef.scrollTop, ':', this.outterRef.clientHeight, ":" , this.innerRef.clientHeight);
     }
 
+    // 클래스 버전
     // dom element를 ref = { (ref) => this.innerRef = ref } 이렇게 매핑
     render() {
         return (

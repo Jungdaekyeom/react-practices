@@ -4,10 +4,13 @@ import React from 'react';
 // onClick={function(e){console.log('click');}} => h1 태그 안에서 onClick 실행 시 콘솔로그 찍힘
 // function(e) 를 람다 형식 (e) => 로 바꿈
 export default function () {
+    // const clickHandler = (e) => alert('click!!');
+
     return (
-        <h1 
-        onClick={(e)=>{console.log('click');}}
-        style={{
+        <h1
+            // onClick={clickHandler}
+            onClick={(e) => { console.log('click'); }}
+            style={{
                 cursor: 'pointer'
             }}>
             ex03 - Inline Handler</h1>

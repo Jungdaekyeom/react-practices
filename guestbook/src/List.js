@@ -1,17 +1,14 @@
 import React from 'react';
+import ListItem from './ListItem';
+import Lists from '../assets/json/data.json';
 
-export default function () {
+// 함수라서 함수 인자로 받아야 함
+export default function() {
     return (
         <ul className="Guestbook__List">
-            <li className="Guestbook__List__Item">
-                <strong>지나가다가</strong>
-                <p>
-                    별루입니다.<br />
-                    비번:1234 -,.-
-                </p>
-                <strong></strong>
-                <a href=''>삭제</a>
-            </li>
+            { Lists.map((list) => <ListItem
+                                    title = {list.title}
+                                    content = {list.content} />) }   
         </ul>
     )
 }
