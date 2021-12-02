@@ -1,0 +1,1 @@
+"debug": "npx webpack serve --config  config/webpack.config.js --progress --mode development --env" 에서 --env 삭제
