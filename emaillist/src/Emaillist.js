@@ -3,7 +3,7 @@ import styles from './assets/scss/Emaillist.scss';
 import Email from './Email';
 
 // -1의 의미가 뭐지?
-const Emaillist = ({keyword, emails}) => {
+const Emaillist = ({keyword, emails, callback}) => {
     return (
         <ul className={styles.Emaillist}>
             {
@@ -13,7 +13,8 @@ const Emaillist = ({keyword, emails}) => {
                                             key={email.no} 
                                             firstName={email.firstName} 
                                             lastName={email.lastName} 
-                                            email={email.email} />)
+                                            email={email.email}
+                                            callback={callback} />)
             }
         </ul>
     );

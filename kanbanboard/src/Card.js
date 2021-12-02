@@ -20,7 +20,6 @@ export default function({title, description, tasks, status}){
         backgroundColor: status === 'Doing' ? 'Red' : (status === 'ToDo' ? 'Green' : 'Blue')
     }
 
-
     // [Hello, World].join(' ') = Hello World
     return(
         <div className={styles.Card}>
