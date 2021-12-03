@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = (env) => ({
     mode: "none",
-    entry: path.resolve(`src/index.js`),
+    entry: path.resolve(`src/${env.src}/index.js`),
     output: {
         path: path.resolve('public'),
-        filename: 'js/main.js',
-        assetModuleFilename: 'images/[hash][ext]'
+        filename: 'bundle.js',
+        assetModuleFilename: 'assets/images/[hash][ext]'
     },
     module: {
         rules: [{
@@ -16,16 +16,13 @@ module.exports = (env) => ({
             test: /\.(sa|sc|c)ss$/i,
             use: [
                 'style-loader',
-                {loader: 'css-loader', options: {modules: true}},
+                { loader: 'css-loader', options: { modules: true } },
                 'sass-loader'
             ]
         }, {
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel-loader',
-            options: {
-                configFile: path.resolve('config/babel.config.json')
-            }
+            loader: 'babel-loader'
         }]
     },
     devtool: "eval-source-map",
@@ -41,3 +38,4 @@ module.exports = (env) => ({
         historyApiFallback: true
     }
 });
+
