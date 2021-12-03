@@ -8,6 +8,7 @@ import './assets/scss/App.scss';
 // 통신
 import dataOrijin from './assets/json/data.json'
 
+// useState 사용
 export default function () {
   const [keyword, setKeyword] = useState('');
   const [data, setdata] = useState(dataOrijin);

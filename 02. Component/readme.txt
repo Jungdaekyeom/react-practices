@@ -19,6 +19,8 @@ ex05
 ex06
     Immutability(불변성) of Component's state
     
+Ajax : fetch, axios
+
 emaillist
 gallery
 guestbook
