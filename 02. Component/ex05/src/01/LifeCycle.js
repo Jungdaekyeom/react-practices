@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 export default class LifeCircle extends Component {
     constructor() {
         super(...arguments);
-        this.h3Ref = null; // 마운트시 dom에 반영됐는지 아닌지를 확인하기 위함
+        this.h3Ref = null;
         this.state = {
             color: null
         }
@@ -31,6 +31,7 @@ export default class LifeCircle extends Component {
      */
     shouldComponentUpdate(nextProps, nextState) {
         console.log(`[UPDATE02]: shouldComponentUpdate(nextProps=${nextProps.color}, nextState=${nextState.color})`)
+        // return false; => render를 부르지 않음
         return true;
     }
 
@@ -57,12 +58,12 @@ export default class LifeCircle extends Component {
      *  변경 전의 state 값과 props값에 접근 가능
      */
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(`[UPDATE05]: componentDidUpdate(prevProps=${prevProps.color}, prevState=${prevState.color}, snapshot=${snapshot})`);
+        // console.log(`[UPDATE05]: componentDidUpdate(prevProps=${prevProps.color}, prevState=${prevState.color}, snapshot=${snapshot})`);
 
-        // const hexColor = snapshot.replace(/[^\d,]/g, '').split(',').map(e => parseInt(e)).reduce((s, e) => s + ('0' + e.toString(16)).slice(-2), "#");
+        const hexColor = snapshot.replace(/[^\d,]/g, '').split(',').map(e => parseInt(e)).reduce((s, e) => s + ('0' + e.toString(16)).slice(-2), "#");
         //   "10, 20, 30" -> [10, 20, 30] -> reduce( '#' -> '#0a' -> '#0af5' -> '#0xf5ee')
 
-        //console.log(`[UPDATE05]: componentDidUpdate(prevProps=${prevProps.color}, prevState=${prevState.color}, snapshot=${hexColor})`);
+        console.log(`[UPDATE05]: componentDidUpdate(prevProps=${prevProps.color}, prevState=${prevState.color}, snapshot=${hexColor})`);
     }
 
     /**

@@ -28,16 +28,17 @@ export default function WriteForm(notifyMessage) {
                 // 
             })
             .filter(({n}) => n !== '') // 마지막에 보내기 input은 넣지 않기 위해서 filter로 걸러냄. 왜 {n} 이지?
-            .reduce((res, {n, v}) => {
+            .reduce((res, {n, v}) => { 
                 res[n] = v;
                 return res;
             }, {}); // o : 오브젝트. object.n이 object.v로 변화하는걸 계속 반복시킨 후, return
 
+            
             // 보내고 나서 텍스트창 전부 리셋
             refForm.current.reset();
             notifyMessage.add(message);
-        } catch (err){
-            console.log(err);
+        } catch (err) {
+            console.error(err);
         }
     };
 
@@ -46,12 +47,11 @@ export default function WriteForm(notifyMessage) {
             ref={refForm}
             onSubmit={handleSubmit} 
             className={styles.WriteForm}>
-
             <input
                 type={'text'}
                 name={'name'}
                 placeholder={'이름'}
-                autoComplete={'off'}/>
+                autoComplete={' off'}/>
             <input
                 type={'password'}
                 name={'password'}

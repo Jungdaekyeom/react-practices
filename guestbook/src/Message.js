@@ -30,17 +30,33 @@ export default function Message({no, name, message, notifyDeleteMessage}) {
             <strong>{no} : {name}</strong>
             <p>
                 {/* {message.replace("\n", "<br/>")} : 해당 br을 컴포넌트로 처리해야한다. */}
-                
+                {/* if/else 문으로도 만들어보기  */}
+                {"A\nB\nC\nD".split('\n').map((line, index) => {
+                    if(index != 0){
+                        return (
+                            <span key={`${index}`}>
+                                <br/>
+                                {index} : {line}
+                            </span> )
+                    } else {
+                        return (
+                            <span>
+                                {index} : {line}
+                            </span>
+                        )
+                    }}
+                )}
+                <br/>
                 {
-                    message && message.split('\n').map((line, index) => index > 0 ? 
-                    <span>
-                        <br/>
-                        {line}
-                    </span> : 
-                    <span>
-                        {line}
-                    </span>)
-                }
+                    message && message.split('\n').map((line, index) => index > 0 ?  
+                        <span key={`${index}`}>
+                            <br/>
+                            {index} : {line}
+                        </span> : 
+                        <span>
+                            {index} : {line}
+                        </span>
+                )}
             </p>
             <strong/>
             {/* <a onClick={ notifyDeleteMessage(no) } >삭제</a> : 함수 정의를 바로 해버려서 수업시간에 문제생김*/}
@@ -49,6 +65,10 @@ export default function Message({no, name, message, notifyDeleteMessage}) {
     );
 }
 
+// validation 검사
+// no에 번호만 넣고
+// name에 스트링만
+// message에도 스트링만
 Message.propTypes = {
     no: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
