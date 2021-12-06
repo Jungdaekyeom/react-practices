@@ -1,0 +1,13 @@
+{
+  "name": "ex06",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "1. Never Manupulate Component's state DIRECTLY! : 절대로 구성 요소의 상태를 직접 조작하지 마라.(직접 값을 바꾸려 하지 마라)\r 2. Treat Component's State As If It were IMMUTABLE! : 처음 만든 건 불변이라 생각하고, 새걸 만든다는 생각으로 하라.\r 3. Always Use the setState or Method returned by useState Hook to Update the State of Component! : setState를 항상 사용하라.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
