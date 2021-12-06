@@ -9,7 +9,7 @@ const applicationRouter = {
             res.locals.res = res;
             next();
         })
-        .use('/api', require('./guestbook'))
+        .use('/api', require('./guestbook')) // api로 시작하면 guestbook
         .use(errorRouter.error404)
         .use(errorRouter.error500)
     }
