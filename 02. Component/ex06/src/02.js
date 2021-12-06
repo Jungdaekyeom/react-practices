@@ -18,6 +18,7 @@ state = {
     order: JSON.parse(fs.readFileSync('./json/data.json').toString())
 }
 
+// Object.assign 은 deep copy는 하지 않는다.
 let updateOrder2 = Object.assign({}, state.order, {
     receive: '부산시 동래구 온천3동'
 });

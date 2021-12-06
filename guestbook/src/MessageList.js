@@ -32,8 +32,7 @@ export default function MessageList({messages, notifyMessage}) {
         e.preventDefault();
         // console.log("사용자가 만든 이벤트인가요? : " + e.isTrusted);
         // console.log("e.target", e.target);
-
-
+        
         // e.target.password.value
         // 여기서 e.target 한 다음, password는 name으로 접근함
         try {

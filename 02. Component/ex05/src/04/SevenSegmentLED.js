@@ -3,6 +3,7 @@ import * as PropTypes from "prop-types";
 import styles from './assets/scss/SevenSegmentLED.scss';
 
 export default function SevenSegmentLED({number, colon}) {
+    // colon : 중간에 생기는 점 두개요.
     return (
         <Fragment>
             <div className={styles.SevenSegmentLED}>

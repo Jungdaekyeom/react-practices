@@ -17,7 +17,9 @@ export default function Hook({ color }) {
      *   class component lifecycle(componentDidMount, componentDidUpdate)
      */
     useEffect(() => {
+
         console.log('After Rendering');
+
     });
 
     /**
@@ -31,8 +33,11 @@ export default function Hook({ color }) {
     /**
      *  4. Alternative 02: componentDidMount & componentWillUnmount
      */
+    
     useEffect(() => {
         console.log('After Mount(componentDidMount)');
+
+        // unmount : 마운트가 되기 전에 받아야한다고?
         return (function(){
             console.log('After Unmount(componentWillUnmount)');
         });

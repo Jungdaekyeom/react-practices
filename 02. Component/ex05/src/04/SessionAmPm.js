@@ -1,7 +1,7 @@
 import React from "react";
 import styels from './assets/scss/SessionAmPm.scss';
 
-export default function SessionAmPm({session}) {
+export default function SessionAmPm({ session }) {
     return (
         <div className={styels.AmPm}>
             <div>

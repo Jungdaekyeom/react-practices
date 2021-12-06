@@ -8,7 +8,7 @@ const Emaillist = ({keyword, emails, callback}) => {
         <ul className={styles.Emaillist}>
             {
                 emails
-                    .filter(email => email.firstName.indexOf(keyword) !== -1 || email.lastName.indexOf(keyword) !== -1 || email.email.indexOf(keyword) !== -1) 
+                .filter(email => email.firstName.indexOf(keyword) !== -1 || email.lastName.indexOf(keyword) !== -1 || email.email.indexOf(keyword) !== -1) 
                     .map((email) => <Email
                                             key={email.no} 
                                             firstName={email.firstName} 
