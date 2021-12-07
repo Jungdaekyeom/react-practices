@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useRef, useEffect} from 'react';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import Message from './Message';
@@ -11,16 +11,16 @@ Modal.setAppElement('body');
 // 비밀번호 창에 바로 포커스가 잡히게끔 하려면 어떻게 해야할까?
 // refForm
 
-export default function MessageList({messages, notifyMessage}) {
+export default function MessageList({ messages, notifyMessage }) {
     const refForm = useRef(null); // 모달이 마운트 된 시점에서 포커스를 옮기기 위한 변수
 
     // 기본값은 객체
     // 지금 여기선 isOpen을 false로만 초기값을 줬지만, 다른것도 다 초기로 줄 수 있음.
     // useState안에 isOpen말고 다른 설정도 넣어보자(ex. label)
-    const [modalData, setModalData] = useState({isOpen: false});
+    const [modalData, setModalData] = useState({ isOpen: false });
 
     // 포커스가 벗어났을때 다시 넣기 전에 잠깐 여유시간을 줌
-    useEffect(() =>{
+    useEffect(() => {
         setTimeout(() => {
             refForm.current && refForm.current.password.focus();
         }, 200);
@@ -32,49 +32,61 @@ export default function MessageList({messages, notifyMessage}) {
         e.preventDefault();
         // console.log("사용자가 만든 이벤트인가요? : " + e.isTrusted);
         // console.log("e.target", e.target);
-        
+
         // e.target.password.value
         // 여기서 e.target 한 다음, password는 name으로 접근함
         try {
-            if(e.target.password.value === ''){
+            if (e.target.password.value === '') {
+                console.log("비밀번호가 공백임")
+                // 패스워드 비워져있으면 반납
                 return;
             }
+            console.log("비밀번호가 공백이 아님/입력한 비밀번호");
+
+            console.log(modalData.messageNo, e.target.password.value);
+
 
             // 통신은 부모 위에서 하는게 좋다.
             // 부모에게 no가 10번인 놈을 찾아서 지우라고 하면 됨.
             /* =========================== 통신 구간 =========================== */
-            // const response = await fetch(`/api/${modalData.messageNo}`, {
-            //     method: 'delete',
-            //     header: {
-            //         'Content-Type':'application/json',
-            //         'Accept':'application/json'
-            //     },
-            //     body:JSON.stringify({password: modalData.password})
-            // });
+            const response = await fetch(`/api/${modalData.messageNo}`, {
+                method: 'delete',
+                header: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
 
-            // if(!response.ok){
-            //     throw `${response.status} ${response.statusText}`;
-            // }
+                body: JSON.stringify({ password: modalData.password })
+            });
 
-            // const jsonResult = response.json;
+            if (!response.ok) {
+                throw `${response.status} ${response.statusText}`;
+            }
 
-            /* =========================== 통신 구간 =========================== */
-
-            // 비밀번호가 틀린 경우
-            // 모달창 위의 텍스트를 경고문으로 바꿔야함.
-            // jsonResult.data = null;
-
-            // by 용수
+            // 비동기 await
+            const json = await response.json();
+            
+            // 비밀번호가 틀린 경우 모달창 위의 텍스트를 경고문으로 바꿔야함.
             // Object.assign({} => 새 주소(빈 집)로 복사한 후에, modalData를 복사해서 갖고오고
             // 그렇게 가지고 온 modalData를 label을 비밀번호가 일치하지 않습니다. 로 덮어씌우고, password를 빈 것으로 덮어씌운다.
-            setModalData(Object.assign({}, modalData, {label: '비밀번호가 일치하지 않습니다.', password: ''}));
-            
+            if (json.data === null) {
+                setModalData(Object.assign({}, modalData, {
+                    label: '비밀번호가 일치하지 않습니다.',
+                    password: ''
+                }));
+
+                return;
+            }
+
             // 잘 삭제가 된 경우
-            // jsonResult.data가 10;
-            setModalData({isOpen: false, password:''});
-            notifyMessage.delete(modalData.messageNo);
-            // console.log("삭제!!:", modalData);
-        } catch(err) {
+            setModalData({
+                isOpen: false, password: ''
+            });
+
+            // json.data를 delete
+            notifyMessage.delete(json.data);
+            console.log("삭제성공:", modalData);
+        } catch (err) {
             console.error(err);
         }
     }
@@ -95,7 +107,7 @@ export default function MessageList({messages, notifyMessage}) {
             messageNo: no,
             password: ''
         })
-        
+
         // setModelData({})에서 {}는, 객체 리터럴로 새로운 객체를 만드는 것.
         // 따라서, 처음 만들었던 곳을 찾아가는 것이 아니라 처음 것을 복사한 후, 변경값을 넣고 그 주소를 찾아간다.
         // var obj = 
@@ -112,10 +124,10 @@ export default function MessageList({messages, notifyMessage}) {
             {/* 메세지 그려주는 부분 */}
             <ul className={styles.MessageList}>
                 {messages.map(message => <Message key={`guestbook_message_${message.no}`}
-                                                  no={message.no}
-                                                  name={message.name}
-                                                  message={message.message}
-                                                  notifyDeleteMessage = {notifyDeleteMessage} />)}
+                    no={message.no}
+                    name={message.name}
+                    message={message.message}
+                    notifyDeleteMessage={notifyDeleteMessage} />)}
             </ul>
             {/* Message.js 삭제버튼 누르면 Modal 켜짐 */}
             <Modal
@@ -133,14 +145,14 @@ export default function MessageList({messages, notifyMessage}) {
                 // 3. shouldCloseOnOverlayClick가 true면, onRequestClose가 실행
                 // 4. onRequestClose안의 function이 실행된다.
                 // 5. function안에 inOpen:false를 실행시켜, 모달을 닫는다.
-                onRequestClose={() => setModalData(Object.assign({}, modalData, {isOpen:false}))}
-                
+                onRequestClose={() => setModalData(Object.assign({}, modalData, { isOpen: false }))}
+
                 // shouldCloseOnOverlayClick : true면 밖에 눌렀을 때 onRequestClose를 실행
-                shouldCloseOnOverlayClick={ true }
+                shouldCloseOnOverlayClick={true}
 
                 className={modalStyles.Modal}
                 overlayClassName={modalStyles.Overlay}
-                style={{content: {width: 350}}}>
+                style={{ content: { width: 350 } }}>
                 <h1>비밀번호입력</h1>
                 <div>
                     <form
@@ -156,7 +168,7 @@ export default function MessageList({messages, notifyMessage}) {
                             name={'password'}
                             value={modalData.password}
                             placeholder={'비밀번호'}
-                            onChange={(e) => setModalData(Object.assign({}, modalData, {password:e.target.value}))}/>
+                            onChange={(e) => setModalData(Object.assign({}, modalData, { password: e.target.value }))} />
                     </form>
                 </div>
                 <div className={modalStyles['modal-dialog-buttons']}>
@@ -178,10 +190,10 @@ export default function MessageList({messages, notifyMessage}) {
                         // 따라서 실행을 위해 리액트가 읽으면서 form태그를 상단에 위치시키
 
                         // 
-                        refForm.current.dispatchEvent(new Event("submit", {cancelable: true, bubbles: true}));
+                        refForm.current.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
                         // setIsOpen(false); // 확인 누르면 창 닫히게
-                    } }>확인</button> 
-                    <button onClick={() => setModalData(Object.assign({}, modalData, {isOpen:false})) } >취소</button>
+                    }}>확인</button>
+                    <button onClick={() => setModalData(Object.assign({}, modalData, { isOpen: false }))} >취소</button>
                 </div>
             </Modal>
         </Fragment>
