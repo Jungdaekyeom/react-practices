@@ -37,9 +37,6 @@ const logger = winston.createLogger({
     })]
 });
 
-// 로그 출력
-// 'development' 이면 콘솔에 출력
-// "dev:backend" / "dev:frontend" 뒤에 달린 NODE_ENV가 development이므로, 콘솔에 출력됨
 process.env.NODE_ENV === 'development' && logger.add(new winston.transports.Console({
   format: winston.format.combine(winston.format.colorize(), winston.format.simple())
 }));

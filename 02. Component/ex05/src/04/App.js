@@ -8,7 +8,6 @@ export default function App() {
         const hours = date.getHours();
         const minutes = ('0' + date.getMinutes()).slice(-2);
         const seconds = ('0' + date.getSeconds()).slice(-2);
-
         return {
             hours: ('0' + (hours == 0 ? 12 : (hours > 12 ? hours - 12 : hours))).slice(-2),
             minutes: minutes,
@@ -31,6 +30,7 @@ export default function App() {
         setInterval(function () {
             setCurrentClockTime(getCurrentClockTime());
             setTicks(ticks + 1); // 한번만 증가
+            console.log("여기")
         }, 1000);
     }, []);
 

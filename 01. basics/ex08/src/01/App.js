@@ -24,7 +24,7 @@ export default function() {
                 // 바깥 괄호는 javascrpit 코드로 해석하라는 토큰
                 // 안쪽 괄호는 객체를 의미하는 토큰
             }
-            <img style={{width:'500px'}} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2cQnBQmJxWMbkM0GTrm0-7xTE3Jaje6k56wJz5izjLDGP6Y8LcedB2DQT39hGxn_CadU&usqp=CAU'/>
+            <img style={{width:'200px'}} src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2cQnBQmJxWMbkM0GTrm0-7xTE3Jaje6k56wJz5izjLDGP6Y8LcedB2DQT39hGxn_CadU&usqp=CAU'/>
             {/*
                 3. 속성 이름은 DOM API 기반이다.
                  <div id='box' class='box'>....</div>

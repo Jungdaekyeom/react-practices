@@ -17,6 +17,36 @@ export default function Guestbook() {
         add: function(message) {
             console.log('ajax posting.....');
 
+            useEffect(async () => {
+                try {
+                  const response = await fetch('/api', {
+                    method: 'get',
+                    // credentials : 토큰 전달에 쓰임
+                    headers: {
+                      'Content-Type': 'application/json',
+                      'Accept': 'application'
+                    },
+                    body: null
+                  });
+                  
+                  // response가 not OK면 throw로 던짐
+                  if(!response.ok) {
+                    throw new Error(`${response.status} ${response.statusText}`);
+                  }
+          
+                  const jsonResult = await response.json();
+          
+                  if(jsonResult.result !== 'success') {
+                    throw new Error(`${jsonResult.result} ${jsonResult.message}`);
+                  }
+          
+                  setEmails(jsonResult.data);
+          
+                } catch (err) {
+                  console.error(err);
+                }
+              }, []);
+
             // 통신이 성공했다 가정
             // 통신이 성공하면 10 대신에 그 자리에 오토 인크리먼트에 맞는 숫자가 들어가겠지?
             message.no = 10;

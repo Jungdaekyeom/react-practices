@@ -12,7 +12,6 @@
         }],
         "@babel/react"
     ],
-    // async / await에 필요
     "plugins": [
         "@babel/plugin-transform-runtime"
     ]

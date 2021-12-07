@@ -15,6 +15,6 @@ export default function() {
             React.createElement(Header, null), 
             React.createElement(Content, null)) // 객체를 넣어준것
         
-        React.createElement(Fragment, null, Header(), Content()) // 함수 자체를 넣어준 것.
+        // React.createElement(Fragment, null, Header(), Content()) // 함수 자체를 넣어준 것.
     )
 }

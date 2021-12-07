@@ -21,7 +21,7 @@ module.exports = (env) => {
                 test: /\.(sa|sc|c)ss$/i,
                 use:[
                     'style-loader', 
-                    {loader: 'css-loader', options: {modules: true} }, // CSS 불러오기
+                    {loader: 'css-loader', options: {modules: true} }, 
                     'sass-loader'
                 ]
             }, {
@@ -36,7 +36,7 @@ module.exports = (env) => {
             host: "0.0.0.0",
             port: 9999,
             proxy: {
-                '/api':'http://localhost:8888' // api로 시작하면 localhost:8888로 보내라
+                '/api': 'http://localhost:8888'
             },
             inline: true,
             liveReload: true,

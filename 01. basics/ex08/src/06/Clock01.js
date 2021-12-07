@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 
 export default function () {
 
-    const date = new Date();
+    const date = new Date(); // 표준시를 받아옴
 
-    let hours = date.getHours();
+    let hours = date.getHours(); // 표준시에서 시간 꺼냄
     let minutes = (('0' + date.getMinutes()).slice(-2));
     let seconds = date.getSeconds();
 

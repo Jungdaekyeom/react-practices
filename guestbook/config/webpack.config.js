@@ -33,7 +33,10 @@ module.exports = (env) => ({
         contentBase: path.resolve('public'),
         watchContentBase: true,
         host: "0.0.0.0",
-        port: 9999,
+        port: 8888,
+        proxy: {
+            '/api':'http://localhost:8888' // api로 시작하면 localhost:8888로 보내라
+        },
         inline: true,
         liveReload: true,
         hot: false,
