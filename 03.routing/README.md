@@ -11,8 +11,8 @@
 ### ex09: BrowserRouter & SSR
 
 ### Install Dependency
-1. react-router: 6.0.x(2021.6 beta)
-2. react-router-dom: 6.0.x(2021.6 beta)
+1. react-router: 6.0.x(2021.6 beta)     : <Routes>, <Route>
+2. react-router-dom: 6.0.x(2021.6 beta) : <HashRouter>, <BrowserRouter>
 
 ```bash
 $ npm i react-router react-router-dom
@@ -26,13 +26,17 @@ $ npm run dev [src=01|02|03|04|05|06|..]
 ---
 ## 수업
 localhost:9999
+localhost:9999/#/gallery
+localhost:9999/#/guestbook
+
+
 
 localhost:9999/#/gallery    (hash router)
 localhost:9999/gallery      (browser router)
 
+<a href='#/main'>main</a>
 <a href='#/gallery'>gallery</a>
-
-
+<a href='#/guestbook'>guestbook</a>
 
 ### react-router
 1. HashRouter(Hash)
