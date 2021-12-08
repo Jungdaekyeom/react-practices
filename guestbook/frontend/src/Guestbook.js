@@ -16,7 +16,7 @@ export default function Guestbook() {
     const notifyMessage = {
         add: async function(message) {
             try {
-                const response = await fetch('/api', {
+                const response = await fetch('/guestbook/api/add', {
                     method: 'post',
                     headers: {
                         'Content-Type': 'application/json',
@@ -41,8 +41,33 @@ export default function Guestbook() {
             }           
 
         },
-        delete: function(no) {
+        delete: async function(no) {
+            console.log(no)
+            try {
+                const response = await fetch(`/guestbook/api/delete/${no}`, {
+                    method: 'delete',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(no)
+                    
+                });
+            if(!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+
+            const json = await response.json();
+
+            if(json.result !== 'success') {
+                throw json.message;
+            }
+
             setMessages(messages.filter(message => message.no !== no));
+
+            } catch(err) {
+                console.error(err);
+            }   
         }
     }
 
@@ -54,14 +79,14 @@ export default function Guestbook() {
         try {
             isFetching = true;
 
-            const startNo = messages.length == 0 ? 0 : messages[messages.length-1].no;
-            const response = await fetch(`/api/${startNo}`, {
+            const response = await fetch('/guestbook/api/list/100', {
                 method: 'get',
-                headers: {
-                    'Content-Type': 'application/json',
+                headers:{
+                    'Context-Type':'application/json',
                     'Accept': 'application/json'
                 }
-            });
+            })
+
 
             if(!response.ok) {
                 throw new Error(`${response.status} ${response.statusText}`);

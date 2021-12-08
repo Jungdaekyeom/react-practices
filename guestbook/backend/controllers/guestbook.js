@@ -16,6 +16,7 @@ module.exports = {
             next(err);
         }
     },
+    
     read: async function (req, res, next) {
         try {
             const startNo = req.params.startNo || 0;

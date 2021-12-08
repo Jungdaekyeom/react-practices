@@ -10,6 +10,7 @@ Modal.setAppElement('body');
 export default function MessageList({messages, notifyMessage}) {
     const refForm = useRef(null);
     const [modalData, setModalData] = useState({isOpen: false});
+
     useEffect(() =>{
         setTimeout(() => {
             refForm.current && refForm.current.password.focus();
@@ -18,20 +19,23 @@ export default function MessageList({messages, notifyMessage}) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // 확인버튼 눌러도 안움직임
+
         try {
             if(e.target.password.value === '') {
                 return;
             }
 
+            // 여기까진 정상동작
             console.log(modalData.messageNo, e.target.password.value);
            
-            const response = await fetch(`/api/${modalData.messageNo}`, {
+            const response = await fetch(`/guestbook/api/delete/${modalData.messageNo}`, {
                 method: 'delete',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/x-www-form-urlencoded',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({password: modalData.password})
+                body: 'password=' + e.target.password.value
             });
 
             if(!response.ok) {
@@ -39,6 +43,7 @@ export default function MessageList({messages, notifyMessage}) {
             }
 
             const json = await response.json();
+            console.log(json);
 
             // 비밀번호가 틀린 경우
             if(json.data === null) {
@@ -51,6 +56,8 @@ export default function MessageList({messages, notifyMessage}) {
             }
 
             // 잘 삭제가 된 경우
+            // 모달을 끄고
+            // 패스워드 비움
             setModalData({
                 isOpen: false,
                 password:''

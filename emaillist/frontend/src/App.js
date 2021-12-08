@@ -20,10 +20,11 @@ export default function() {
     
     // cors error
     // Access to fetch at 'http://localhost:8888/api' from origin 'http://localhost:9999' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+    
     useEffect(async () => {
       try {
-        // const response = await fetch('http://localhost:8888/api', { // 동일 오리진 정책 위배
-        const response = await fetch('/api', {
+        const response = await fetch('http://localhost:8888/api', { // 동일 오리진 정책 위배
+        // const response = await fetch('/api', {
           method: 'get',
           mode: 'cors',                   // no-cors, cors, same-origin*
           credentials: 'same-origin',            // include, omit, same-origin*  credentials : 인증에 필요한 토큰 전달에 쓰임. 

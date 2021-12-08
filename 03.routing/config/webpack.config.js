@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = (env) => ({
     mode: "none",
-    entry: path.resolve(`frontend/src/index.js`),
+    entry: path.resolve(`src/${env.src}/index.js`),
     output: {
         path: path.resolve('public'),
-        filename: 'js/main.js',
-        assetModuleFilename: 'images/[hash][ext]'
+        filename: 'bundle.js',
+        assetModuleFilename: 'assets/images/[hash][ext]'
     },
     module: {
         rules: [{
@@ -16,7 +16,7 @@ module.exports = (env) => ({
             test: /\.(sa|sc|c)ss$/i,
             use: [
                 'style-loader',
-                {loader: 'css-loader', options: {modules: true}},
+                { loader: 'css-loader', options: { modules: true } },
                 'sass-loader'
             ]
         }, {
@@ -24,19 +24,16 @@ module.exports = (env) => ({
             exclude: /node_modules/,
             loader: 'babel-loader',
             options: {
-                configFile: path.resolve('frontend/config/babel.config.json')
+                configFile: path.resolve('config/babel.config.json')
             }
         }]
     },
     devtool: "eval-source-map",
     devServer: {
-        contentBase: path.resolve('frontend/public'),
+        contentBase: path.resolve('public'),
         watchContentBase: true,
         host: "0.0.0.0",
         port: 9999,
-        proxy: {
-            '/guestbook': 'http://localhost:8080/mysite03'
-        },
         inline: true,
         liveReload: true,
         hot: false,
