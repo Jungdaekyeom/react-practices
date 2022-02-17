@@ -26,7 +26,7 @@ export default class LifeCircle extends Component {
      *  변경 데이터: nextProps, nextState
      *  로 접근 가능하다.
      *
-     *  컴포넌트 성능 최적화(튜닝)에 사용할 수 있다.
+     *  아직 Render 하기 전이므로, return false 를 하면 render를 취소할 수 있다. 따라서 컴포넌트 성능 최적화(튜닝)에 사용할 수 있다.
      */
     shouldComponentUpdate(nextProps, nextState) {
         console.log(`[UPDATE02]: shouldComponentUpdate(nextProps=${nextProps.color}, nextState=${nextState.color})`)
