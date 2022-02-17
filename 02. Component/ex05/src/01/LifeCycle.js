@@ -12,7 +12,9 @@ export default class LifeCircle extends Component {
     }
 
     /**
+     *  리액트 16에서 추가된 라이프사이클
      *  props로 받아온 값을 state에 동기화 한다.[react v16.3]
+     *  props가 바뀌면 state로 같이 바꿔준다고 생각하면 됨
      */
     static getDerivedStateFromProps(nextProps, prevState) {
         console.log(`[MOUNT02][UPDATE01]: getDerivedStateFromProps(nextProps=${nextProps.color}, prevState=${prevState.color})`);
